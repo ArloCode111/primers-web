@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Álvaro Orozco Quirós — Pintura</title>
+<meta name="description" content="Pintura al óleo, grabado, dibujo y videoarte de Álvaro Orozco Quirós. Figura humana, sombras y color intenso.">
+<!-- Vista previa al compartir el enlace. Cuando publiques, cambia og:image por la dirección completa de tu foto, p. ej. https://tudominio.com/img/portada.jpg -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Álvaro Orozco Quirós — Pintura">
+<meta property="og:description" content="Pintura al óleo, grabado, dibujo y videoarte.">
+<meta property="og:image" content="img/portada.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Hanken+Grotesk:wght@400;500&display=swap">
+<style>
+:root{--bg:#fbfaf6;--ink:#242424;
+/* textura: grano de papel + trama fina de lienzo. Para más o menos intensidad, cambia .09 (grano) y .03 (trama) */
+--grain:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .16 0 0 0 0 .13 0 0 0 0 .1 0 0 0 .09 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+--tela:repeating-linear-gradient(0deg,rgba(70,55,40,.03) 0 1px,transparent 1px 3px),repeating-linear-gradient(90deg,rgba(70,55,40,.03) 0 1px,transparent 1px 3px);--mute:#6b6b6b;--line:#e3e3df;--serif:"Cormorant Garamond",Georgia,serif;--sans:"Hanken Grotesk",system-ui,sans-serif}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-snap-type:y proximity}
+body{background:var(--bg);color:var(--ink);font:400 1.05rem/1.65 var(--sans)}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background-image:var(--grain),var(--tela)}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--c,#242424);outline-offset:4px}
+section{position:relative;min-height:100vh;padding:12vh 11vw 10vh 8vw;scroll-snap-align:start;display:flex;flex-direction:column;justify-content:center;gap:2.2rem}
+h2{font:400 clamp(2.2rem,5vw,4rem)/1.05 var(--serif);display:flex;align-items:center;gap:.9rem}
+h2::before{content:attr(data-n);font:italic 400 .62em var(--serif);color:var(--c);align-self:flex-start;margin-top:.5em;flex:none}
+h2::after{content:"";flex:0 1 12rem;height:5px;margin-left:.8rem;border-top:1px solid var(--c);border-bottom:1px solid var(--c);opacity:.5}
+.lead{font:400 1.35rem/1.5 var(--serif);max-width:40rem}
+.lead.small{font-size:1.15rem;color:var(--mute)}
+
+/* navegación por puntos */
+.dots{position:fixed;right:2.2vw;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:20px;z-index:5}
+.dots a{position:relative;z-index:1;width:12px;height:12px;opacity:.4;transition:transform .25s,opacity .25s;display:block}
+.dots a::before{content:"";position:absolute;inset:16%;background:var(--c);transform:rotate(45deg)}
+.dots a.on{transform:scale(1.7);opacity:1}
+.dots a span{position:absolute;right:26px;top:50%;transform:translateY(-50%);font:400 1.05rem var(--serif);white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s;background:var(--bg);padding:0 .4rem}
+.dots a:hover span,.dots a:focus-visible span{opacity:1}
+.dots a:hover{opacity:1}
+
+/* portada */
+#portada{justify-content:space-between;padding-top:12vh}
+.hero{display:block}
+h1{font:400 clamp(2.8rem,9vw,8rem)/.95 var(--serif);letter-spacing:-.02em;max-width:14ch}
+.nombre{font:500 .95rem var(--sans);color:var(--mute);margin-top:1.4rem;letter-spacing:.04em}
+.feat{justify-self:end;width:100%}
+.feat .work{width:min(100%,calc(44vh*.8))}
+.indice{border-top:1px solid var(--line);padding-top:1.4rem}
+.indice ol{list-style:none;padding:0;display:flex;flex-wrap:wrap;gap:.4rem 2.2rem}
+.indice a{text-decoration:none;font:400 1.5rem var(--serif);display:inline-flex;align-items:center;gap:.6rem;padding:.2rem 0}
+.indice a:hover{text-decoration:underline;text-underline-offset:.25em;text-decoration-color:var(--c)}
+.indice i{font-style:italic;color:var(--c);font-size:1.7rem;min-width:2.3rem}
+
+/* obras */
+.works{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:2rem;max-width:62rem}
+.work{all:unset;cursor:pointer;display:block}
+.work:focus-visible{outline:2px solid var(--c);outline-offset:6px}
+.ph{position:relative;aspect-ratio:var(--r,4/5);background-size:cover;background-position:center;display:grid;place-items:center;transition:transform .35s}
+.ph i{color:rgba(255,255,255,.85);font:italic 1.1rem var(--serif)}
+.pl{position:absolute;right:.9rem;bottom:.9rem;width:0;height:0;border-left:16px solid #fff;border-top:10px solid transparent;border-bottom:10px solid transparent}
+.work:hover .ph{transform:scale(1.015)}
+.cap{display:flex;justify-content:space-between;gap:1rem;align-items:baseline;margin-top:.7rem;border-bottom:2px solid transparent;transition:border-color .2s}
+.cap b{font:600 1.25rem var(--serif)}
+.cap small{color:var(--mute)}
+.work:hover .cap{border-color:var(--c)}
+.oculto{display:none!important}
+.filtros{display:flex;flex-wrap:wrap;gap:.3rem 1.6rem}
+.filtros button{all:unset;cursor:pointer;font:400 1.25rem var(--serif);color:var(--mute);border-bottom:2px solid transparent;padding:.1rem 0}
+.filtros button[aria-pressed=true]{color:var(--ink);border-color:var(--c)}
+.filtros button:focus-visible{outline:2px solid var(--c);outline-offset:4px}
+.conjunto{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;max-width:44rem}
+.conjunto button{all:unset;display:block;aspect-ratio:7/10;cursor:pointer;transition:filter .3s}
+.conjunto button:hover,.conjunto button:focus-visible{filter:brightness(1.08)}
+.etq{font:500 .85rem var(--sans);letter-spacing:.06em;color:var(--mute);margin-bottom:-1.4rem}
+
+/* encargos, sobre mí, contacto */
+.lista{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2rem;max-width:62rem}
+.lista div,.cv div{border-top:2px solid var(--c);padding-top:.8rem}
+.lista h3,.cv h3{font:600 1.4rem var(--serif)}
+.lista p,.cv p{color:var(--mute);font-size:.98rem}
+.pasos{max-width:44rem;padding-left:1.3rem;color:var(--mute);display:grid;gap:.4rem}
+.pasos b{color:var(--ink);font-weight:500}
+.btn{align-self:flex-start;display:inline-block;text-decoration:none;background:var(--c);color:#fff;padding:.85rem 1.6rem;font-weight:500}
+.btn:hover{filter:brightness(.9)}
+.duo{display:grid;grid-template-columns:minmax(170px,.55fr) 1.45fr;gap:3rem;max-width:62rem;align-items:start}
+.retrato{aspect-ratio:4/5;background:linear-gradient(160deg,#8a8a85,#2c2c2c);display:grid;place-items:center;color:rgba(255,255,255,.85);font:italic 1.1rem var(--serif)}
+.duo>div:last-child{display:flex;flex-direction:column;gap:2rem}
+.cv{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem}
+.redes{display:flex;flex-wrap:wrap;gap:1.6rem 2.4rem}
+.redes a{display:inline-flex;align-items:center;gap:.6rem;text-decoration:none}
+.redes a:hover{text-decoration:underline}
+.redes svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.7}
+footer{padding:2rem 8vw;color:var(--mute);font-size:.9rem;border-top:1px solid var(--line)}
+
+/* vista ampliada */
+dialog{border:0;padding:0;background-color:var(--bg);background-image:var(--grain),var(--tela);width:min(1100px,94vw);max-height:92vh;box-shadow:0 0 0 1px var(--line)}
+dialog[open]{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);overflow:auto}
+dialog::backdrop{background:rgba(251,250,246,.94)}
+.vis{position:relative;display:flex;flex-direction:column;min-height:60vh}
+.fig{flex:1;min-height:50vh;display:grid;place-items:center;background-size:contain;background-repeat:no-repeat;background-position:center}
+.fig i{color:rgba(255,255,255,.85);font:italic 1.3rem var(--serif)}
+.fig iframe{width:100%;aspect-ratio:16/9;border:0}
+.escala{display:flex;align-items:flex-end;gap:.7rem;padding:.8rem 1rem;border-top:1px solid var(--line)}
+.escala[hidden],.proceso[hidden]{display:none}
+.escala svg{fill:var(--ink);opacity:.7;flex:none}
+.mini{display:block;flex:none;outline:1px solid var(--line)}
+.escala small{color:var(--mute);font-size:.85rem;align-self:center}
+.info h4,.proceso h4{font:500 .8rem var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+.ficha{display:grid;grid-template-columns:auto 1fr;gap:.35rem 1.2rem;font-size:.98rem}
+.ficha dt{color:var(--mute)}.ficha dd{margin:0}
+.proceso{grid-column:1/-1;border-top:1px solid var(--line);padding:1.3rem 2rem 2rem;display:flex;flex-direction:column;gap:1rem}
+.pp{display:flex;gap:1rem;overflow-x:auto;padding-bottom:.4rem}
+.paso{all:unset;cursor:pointer;flex:none;width:130px;display:flex;flex-direction:column;gap:.3rem}
+.paso span{display:block;aspect-ratio:1;outline:2px solid transparent;outline-offset:2px}
+.paso.on span,.paso:focus-visible span{outline-color:var(--ink)}
+.paso b{font:600 1.05rem var(--serif)}
+.paso small{color:var(--mute);font-size:.82rem;line-height:1.35}
+.nav{position:absolute;top:50%;margin-top:-1.5rem;width:3rem;height:3rem;border:0;border-radius:50%;background:rgba(255,255,255,.88);font:400 2rem/1 var(--serif);cursor:pointer;color:var(--ink)}
+.nav.p{left:.6rem}.nav.n{right:.6rem}
+.info{padding:3rem 2rem 1.5rem;display:flex;flex-direction:column;gap:1rem}
+.info h3{font:400 2.4rem/1.05 var(--serif)}
+.x{position:absolute;top:.6rem;right:.9rem;z-index:2;font:400 2.2rem/1 var(--serif);background:none;border:0;cursor:pointer;color:var(--ink);padding:.2rem .5rem}
+@media(max-width:760px){
+ section{padding:10vh 14vw 8vh 6vw}
+ .dots{right:3vw;gap:14px}.dots a{width:10px;height:10px}
+ .hero{grid-template-columns:1fr;gap:2rem}.feat{justify-self:start}.feat .work{width:min(100%,calc(34vh*.8))}
+ .duo{grid-template-columns:1fr}.retrato{max-width:260px}
+ dialog[open]{grid-template-columns:1fr}.vis,.fig{min-height:42vh}.info{padding:1.6rem 1.4rem 1rem}.proceso{padding:1.2rem 1.4rem 2rem}.dots::before,.dots::after{left:4.5px}
+}
+
+/* ornamento medieval */
+#serie .lead::first-letter{float:left;font:400 3.6em/.78 var(--serif);color:var(--c);padding:.06em .1em 0 0}
+section:not(#portada)::before{content:"";position:absolute;left:3.4vw;top:12vh;bottom:10vh;border-left:1px solid var(--c);opacity:.35}
+section:not(#portada)::after{content:"";position:absolute;left:calc(3.4vw - 3px);top:calc(12vh - 3px);width:7px;height:7px;background:var(--c);transform:rotate(45deg)}
+/* línea que une los puntos y se va rellenando al bajar */
+.dots::before{content:"";position:absolute;left:5.5px;top:6px;bottom:6px;width:1px;background:var(--line)}
+.dots::after{content:"";position:absolute;left:5.5px;top:6px;width:1px;height:calc((100% - 12px)*var(--p,0));background:var(--lc,#242424);opacity:.6;transition:height .15s}
+/* flecha de la portada */
+.baja{position:absolute;left:50%;bottom:2vh;margin-left:-14px;width:28px;height:28px;color:var(--mute);opacity:0;animation:fade 1s 2.4s ease forwards}
+.baja svg{width:28px;height:28px;stroke:currentColor;fill:none;stroke-width:1.5;animation:bob 2s ease-in-out 3.4s infinite}
+@keyframes bob{50%{transform:translateY(5px)}}
+/* animaciones */
+@keyframes rise{to{opacity:1;transform:none}}
+@keyframes fade{to{opacity:1}}
+@keyframes fadein{from{opacity:0}}
+@keyframes up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.w{display:inline-block;white-space:nowrap}
+.l{display:inline-block;opacity:0;transform:translateY(.5em);animation:rise 1s cubic-bezier(.2,.7,.2,1) forwards;animation-delay:calc(var(--i)*55ms + .25s)}
+.nombre,.indice,.feat{opacity:0;animation:fade 1s ease forwards}
+.nombre{animation-delay:1.5s}.feat{animation-delay:1.7s}.indice{animation-delay:1.9s}
+.rv{opacity:0;transform:translateY(28px);transition:opacity .9s ease,transform .9s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0s)}
+.rv.in{opacity:1;transform:none}
+dialog[open]::backdrop{animation:fadein .45s ease}
+dialog[open] .info>*{animation:up .6s .3s both}
+dialog[open] .info>*:nth-child(2){animation-delay:.4s}
+dialog[open] .info>*:nth-child(3){animation-delay:.5s}
+dialog[open] .info>*:nth-child(4){animation-delay:.6s}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}.l,.nombre,.indice,.feat,.baja,.rv{opacity:1!important;transform:none!important}}
+</style>
+</head>
+<body>
+
+<nav class="dots" id="dots" aria-label="Apartados"></nav>
+
+<main>
+<section id="portada">
+  <div class="hero">
+    <div>
+      <h1>Álvaro Orozco Quirós</h1>
+      <p class="nombre">Pintura y figura humana</p>
+    </div>
+  </div>
+  <div class="indice">
+    <ol id="indice"></ol>
+  </div>
+  <a class="baja" href="#serie" aria-label="Bajar a la serie"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></a>
+</section>
+
+<section id="serie">
+  <h2>Serie en proceso</h2>
+  <p class="lead">Varios óleos que se completan entre sí. Cada cuadro se entiende solo, pero la serie solo se lee entera. Se irá ampliando a medida que avance.</p>
+  <p class="etq">VISTA CONJUNTA</p>
+  <div class="conjunto" id="conjunto"></div>
+  <div class="works" id="g-serie"></div>
+</section>
+
+<section id="obra">
+  <h2>Obra</h2>
+  <div class="filtros" id="filtros" role="group" aria-label="Filtrar por técnica"></div>
+  <div class="works" id="g-obra"></div>
+</section>
+
+<section id="video">
+  <h2>Videoarte</h2>
+  <p class="lead small">Piezas en vídeo con sombras y figura humana.</p>
+  <div class="works" id="g-video"></div>
+</section>
+
+<section id="encargos">
+  <h2>Encargos</h2>
+  <p class="lead">Acepto encargos de pintura al óleo y retrato a grafito. Cuéntame qué tienes en mente y te preparo un presupuesto.</p>
+  <div class="lista">
+    <div><h3>Óleo sobre lienzo</h3><p>Retratos y figura humana, con medidas a acordar. Plazo orientativo: de 3 a 6 semanas.</p></div>
+    <div><h3>Retrato a grafito</h3><p>Retratos realistas a partir de tus fotografías. Plazo orientativo: de 1 a 3 semanas.</p></div>
+  </div>
+  <ol class="pasos">
+    <li><b>Hablamos de la idea:</b> tamaño, técnica y referencias.</li>
+    <li><b>Presupuesto y plazo</b> acordados antes de empezar.</li>
+    <li><b>Te envío avances</b> para que veas cómo va.</li>
+    <li><b>Entrega</b> y cierre del encargo.</li>
+  </ol>
+  <a class="btn" href="https://instagram.com/arlooq.art" target="_blank" rel="noopener">Pedir presupuesto por mensaje</a>
+</section>
+
+<section id="sobre">
+  <h2>Sobre mí</h2>
+  <div class="duo">
+    <!-- Para poner tu foto: añade style="background:url('img/retrato.jpg') center/cover" y borra el texto de dentro -->
+    <div class="retrato" role="img" aria-label="Retrato de Álvaro Orozco Quirós"><i>foto por añadir</i></div>
+    <div>
+      <p class="lead">Parto de la figura humana (posturas, miradas, gestos) para contar relatos y emociones. Pinto al óleo con color intenso y me atraen lo medieval, el grabado y las sombras como forma de dibujar con la luz.</p>
+      <div class="cv">
+        <div><h3>Formación</h3><p>Grado en Bellas Artes, Universidad de Murcia (en curso).</p></div>
+        <div><h3>Exposiciones</h3><p>Por añadir: colectivas, muestras y otras participaciones.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contacto">
+  <h2>Contacto</h2>
+  <p class="lead">Para encargos, colaboraciones o simplemente para hablar de la obra, escríbeme por Instagram.</p>
+  <!-- Cuando tengas correo profesional, añade aquí otro enlace con mailto: -->
+  <div class="redes">
+    <a href="https://instagram.com/arlooq.art" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".6"/></svg>arlooq.art</a>
+  </div>
+</section>
+</main>
+<footer>© 2026 Álvaro Orozco Quirós</footer>
+
+<dialog id="dlg" aria-label="Detalle de la obra">
+  <button class="x" aria-label="Cerrar">×</button>
+  <div class="vis">
+    <div class="fig" id="fig" role="img"></div>
+    <div class="escala" id="escala" hidden></div>
+    <button class="nav p" aria-label="Anterior">‹</button><button class="nav n" aria-label="Siguiente">›</button>
+  </div>
+  <div class="info">
+    <h3 id="d-t"></h3>
+    <dl class="ficha" id="d-f"></dl>
+    <h4>Significado</h4>
+    <p id="d-x"></p>
+  </div>
+  <div class="proceso" id="proceso" hidden>
+    <h4>Proceso creativo</h4>
+    <div class="pp" id="d-p"></div>
+  </div>
+</dialog>
+
+<script>
+/* ========= EDITA AQUÍ =========
+   img: foto principal. Guarda las imágenes en la carpeta "img" junto a este archivo
+        y escribe su ruta, p. ej. img:'img/venda-y-corona.jpg'.
+   txt: el significado de la obra (sale junto a la ficha técnica).
+   w y h: ancho y alto real en cm (p. ej. w:70,h:100); con ellos sale la comparación a escala con una persona.
+   ficha: datos técnicos extra, p. ej. ficha:{'Soporte':'Lienzo de lino','Pintura':'Óleo'}.
+   proceso: pasos del proceso creativo, p. ej. proceso:[{t:'Boceto',txt:'Primeras ideas',img:'img/boceto.jpg'}].
+   alt: descripción de la imagen para quien no la ve (opcional pero recomendable).
+   video (solo en sec:'video'): enlace de incrustar de YouTube o Vimeo,
+        p. ej. video:'https://www.youtube.com/embed/CODIGO_DEL_VIDEO'.
+   sec: serie | obra | video.   cat (solo en obra): Pintura | Grabado | Dibujo...
+   r: proporción ancho/alto de la obra, p. ej. r:'7/10' para 70 de ancho × 100 de alto (si no se pone, 4/5).
+   a y b son los colores del recuadro de ejemplo mientras no haya foto. */
+const OBRAS=[
+ {sec:'serie',r:'7/10',w:70,h:100,t:'Venda y corona',y:2026,tech:'Óleo sobre lienzo',size:'100 × 70 cm',img:'',proceso:[{t:'Boceto',txt:'Ejemplo: primeras ideas de composición.',img:''},{t:'Estudio de color',txt:'Ejemplo: prueba de paleta antes del óleo.',img:''},{t:'Óleo en proceso',txt:'Ejemplo: capas de color sobre el lienzo.',img:''}],alt:'',a:'#2f6b4f',b:'#b3262b',txt:'Retrato de perfil con corona y venda roja sobre fondo verde. Primera pieza de la serie, aún sin terminar. Texto de ejemplo: cámbialo por el tuyo.'},
+ {sec:'serie',r:'7/10',w:70,h:100,t:'Pieza II',y:2026,tech:'Óleo sobre lienzo',size:'100 × 70 cm',img:'',extra:[],alt:'',a:'#b3262b',b:'#6b3a7a',txt:'Texto de ejemplo: aquí explicas cómo esta pieza se relaciona con la anterior.'},
+ {sec:'serie',r:'7/10',w:70,h:100,t:'Pieza III',y:2026,tech:'Óleo sobre lienzo',size:'100 × 70 cm',img:'',extra:[],alt:'',a:'#c9962b',b:'#2f6b4f',txt:'Texto de ejemplo.'},
+ {sec:'obra',cat:'Pintura',t:'Estudio de color',y:2025,tech:'Óleo sobre tabla',size:'Medidas por añadir',img:'',extra:[],alt:'',a:'#2b4a8c',b:'#c9962b',txt:'Texto de ejemplo.'},
+ {sec:'obra',cat:'Grabado',t:'Grabado I',y:2026,tech:'Aguafuerte',size:'Medidas por añadir',img:'',extra:[],alt:'',a:'#3b3b3b',b:'#9a9a94',txt:'Texto de ejemplo.'},
+ {sec:'obra',cat:'Dibujo',t:'Retrato a grafito',y:2026,tech:'Grafito sobre papel',size:'Medidas por añadir',img:'',extra:[],alt:'',a:'#6b6b6b',b:'#d8d8d2',txt:'Texto de ejemplo.'},
+ {sec:'video',t:'Sombras I',y:2026,tech:'Videoarte',size:'Duración por añadir',img:'',video:'',alt:'',a:'#242424',b:'#2b4a8c',txt:'Texto de ejemplo: qué es la pieza y cómo la hiciste.'}
+];
+const SECS=[['portada','Portada','#242424'],['serie','Serie en proceso','#2f6b4f'],['obra','Obra','#c9962b'],['video','Videoarte','#2b4a8c'],['encargos','Encargos','#6b3a7a'],['sobre','Sobre mí','#a4502c'],['contacto','Contacto','#b3262b']];
+/* ================================= */
+
+const $=s=>document.querySelector(s),ROM=['I','II','III','IV','V','VI'];
+SECS.forEach(([id,n,c],i)=>{
+  document.getElementById(id).style.setProperty('--c',c);const hh=document.querySelector('#'+id+' h2');if(hh)hh.dataset.n=ROM[i-1]||'';
+  const a=document.createElement('a');a.href='#'+id;a.style.setProperty('--c',c);a.dataset.id=id;a.innerHTML='<span>'+n+'</span>';a.setAttribute('aria-label',n);$('#dots').append(a);
+  if(i){const li=document.createElement('li');li.innerHTML='<a href="#'+id+'" style="--c:'+c+'"><i>'+ROM[i-1]+'</i>'+n+'</a>';$('#indice').append(li)}
+});
+const bg=(s,w,m)=>s?`url('${s}') center/${m} no-repeat`:`linear-gradient(160deg,${w.a},${w.b})`;
+const alt=w=>w.alt||`${w.t}, ${w.tech}`;
+function card(w){
+  const b=document.createElement('button');b.type='button';b.className='work';b.style.setProperty('--c',w.a);if(w.r)b.style.setProperty('--r',w.r);
+  if(w.cat)b.dataset.cat=w.cat;
+  b.innerHTML=`<span class="ph" role="img" aria-label="${alt(w)}" style="background:${bg(w.img,w,'cover')}">${w.img?'':'<i>'+(w.sec==='video'?'vídeo':'foto')+' por añadir</i>'}${w.sec==='video'?'<span class="pl"></span>':''}</span><span class="cap"><b>${w.t}</b><small>${w.y}</small></span>`;
+  b.onclick=()=>abrir(w,b);return b;
+}
+OBRAS.forEach(w=>$('#g-'+w.sec).append(card(w)));
+OBRAS.filter(w=>w.sec==='serie').forEach(w=>{
+  const b=document.createElement('button');b.type='button';b.style.background=bg(w.img,w,'cover');b.setAttribute('aria-label',w.t);b.onclick=()=>abrir(w,b);$('#conjunto').append(b);
+});
+/* filtro por técnica */
+const cats=[...new Set(OBRAS.filter(w=>w.sec==='obra').map(w=>w.cat))];
+['Todo',...cats].forEach((c,i)=>{
+  const f=document.createElement('button');f.type='button';f.textContent=c;f.setAttribute('aria-pressed',i===0);
+  f.onclick=()=>{
+    [...$('#filtros').children].forEach(x=>x.setAttribute('aria-pressed',x===f));
+    $('#g-obra').querySelectorAll('.work').forEach(k=>{const ok=!i||k.dataset.cat===c;k.classList.toggle('oculto',!ok);if(ok)k.classList.add('in')});
+  };
+  $('#filtros').append(f);
+});
+
+/* vista ampliada con flechas y varias imágenes */
+const dlg=$('#dlg'),calma=matchMedia('(prefers-reduced-motion:reduce)').matches;
+let G=[],gi=0;
+function mostrar(k){
+  const w=G[gi],P=w.proceso||[],src=[w.img,...P.map(p=>p.img)][k],f=$('#fig');
+  f.setAttribute('aria-label',alt(w));
+  if(w.sec==='video'&&w.video){f.style.background='#111';f.innerHTML=`<iframe src="${w.video}" title="${w.t}" allowfullscreen></iframe>`}
+  else{f.style.background=bg(src,w,'contain');f.innerHTML=src?'':'<i>'+(k?P[k-1].t:(w.sec==='video'?'vídeo':'foto'))+' por añadir</i>'}
+  $('#d-p').querySelectorAll('.paso').forEach((b,j)=>b.classList.toggle('on',j===k));
+}
+/* comparación a escala: persona de 1,75 m junto a la obra */
+function escala(w){
+  const e=$('#escala');e.hidden=!(w.w&&w.h);if(e.hidden)return;
+  const H=64,s=H/175;
+  e.innerHTML=`<svg viewBox="0 0 40 100" width="${H*.4}" height="${H}" aria-hidden="true"><circle cx="20" cy="6.5" r="6"/><path d="M13 14H27Q31 14 32 19L35 46H31L28.5 27L28 52L27 100H21L20 62L19 100H13L12 52L11.5 27L9 46H5L8 19Q9 14 13 14Z"/></svg><span class="mini" style="width:${w.w*s}px;height:${w.h*s}px;background:${bg(w.img,w,'cover')}"></span><small>A escala: ${w.h} × ${w.w} cm junto a una persona de 1,75 m</small>`;
+}
+function pintar(){
+  const w=G[gi],P=w.proceso||[];
+  $('#d-t').textContent=w.t;$('#d-x').textContent=w.txt;
+  $('#d-f').innerHTML=[['Año',w.y],['Técnica',w.tech],['Medidas',w.size],...Object.entries(w.ficha||{})].filter(r=>r[1]).map(([a,b])=>`<dt>${a}</dt><dd>${b}</dd>`).join('');
+  $('#proceso').hidden=!P.length;
+  $('#d-p').innerHTML=P.length?[{t:'Obra final',txt:'',img:w.img},...P].map((p,j)=>`<button type="button" class="paso" data-k="${j}"><span style="background:${p.img?bg(p.img,w,'cover'):`linear-gradient(${160+j*25}deg,${w.a},${w.b})`}"></span><b>${p.t}</b><small>${p.txt||''}</small></button>`).join(''):'';
+  escala(w);
+  dlg.querySelectorAll('.nav').forEach(n=>n.hidden=G.length<2);
+  mostrar(0);
+}
+function abrir(w,el){
+  G=OBRAS.filter(x=>x.sec===w.sec);gi=G.indexOf(w);pintar();dlg.showModal();
+  if(calma||!el||!dlg.animate)return;
+  /* la ventana crece desde la miniatura pulsada */
+  const a=el.getBoundingClientRect(),d=dlg.getBoundingClientRect();
+  const dx=a.left+a.width/2-(d.left+d.width/2),dy=a.top+a.height/2-(d.top+d.height/2);
+  dlg.animate([{transform:`translate(${dx}px,${dy}px) scale(.22)`,opacity:0},{transform:'none',opacity:1}],{duration:520,easing:'cubic-bezier(.2,.7,.2,1)'});
+}
+const ir=d=>{gi=(gi+d+G.length)%G.length;pintar()};
+dlg.addEventListener('click',e=>{
+  const t=e.target,p=t.closest('[data-k]');
+  if(t===dlg||t.classList.contains('x'))dlg.close();
+  else if(t.classList.contains('nav'))ir(t.classList.contains('p')?-1:1);
+  else if(p)mostrar(+p.dataset.k);
+});
+dlg.addEventListener('keydown',e=>{if(e.key==='ArrowRight')ir(1);if(e.key==='ArrowLeft')ir(-1)});
+dlg.addEventListener('close',()=>{$('#fig').innerHTML=''});
+
+/* portada: el nombre aparece letra a letra */
+const h1=$('h1'),tx=h1.textContent;let n=0;
+h1.setAttribute('aria-label',tx);
+h1.innerHTML=tx.split(' ').map(p=>'<span class="w" aria-hidden="true">'+[...p].map(c=>`<span class="l" style="--i:${n++}">${c}</span>`).join('')+'</span>').join(' ');
+
+/* aparición suave al hacer scroll */
+const rio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');rio.unobserve(e.target)}}),{threshold:.15,rootMargin:'0px 0px -6% 0px'});
+document.querySelectorAll('section:not(#portada) :is(h2,.lead,.etq,.conjunto,.filtros,.work,.lista div,.pasos,.btn,.retrato,.cv div,.redes a)').forEach(el=>{
+  el.style.setProperty('--d',(Array.from(el.parentNode.children).indexOf(el)%4)*.12+'s');
+  el.classList.add('rv');rio.observe(el);
+});
+
+/* punto activo según la sección visible */
+const dots=[...document.querySelectorAll('.dots a')];
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){dots.forEach(d=>d.classList.toggle('on',d.dataset.id===e.target.id));$('#dots').style.setProperty('--lc',SECS.find(x=>x[0]===e.target.id)[2])}}),{threshold:.5});
+SECS.forEach(([id])=>io.observe(document.getElementById(id)));
+addEventListener('scroll',()=>$('#dots').style.setProperty('--p',scrollY/Math.max(1,document.documentElement.scrollHeight-innerHeight)),{passive:true});
+</script>
+</body>
+</html>
